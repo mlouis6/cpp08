@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/22 13:54:37 by mlouis            #+#    #+#              #
-#    Updated: 2026/02/22 15:38:09 by mlouis           ###   ########.fr        #
+#    Created: 2026/02/22 15:38:19 by mlouis            #+#    #+#              #
+#    Updated: 2026/02/22 15:39:30 by mlouis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME := containers.out
 
 OBJS_DIR := .build/
 
-SRCS := main.cpp Span.cpp
+SRCS := main.cpp
 INCS := .
 OBJS := $(addprefix $(OBJS_DIR), $(SRCS:%.cpp=%.o))
 DEPS := $(OBJS:.o=.d)
