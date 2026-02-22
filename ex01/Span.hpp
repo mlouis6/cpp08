@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:55:43 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/22 14:53:27 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:03:31 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ class Span
 		int				shortestSpan() const;
 		int				longestSpan() const;
 		void			addRange(unsigned int pos, int* toAdd);
-		int*			getData() const;
+		int*			getDatas() const;
+		int				getData(unsigned int pos) const;
 		unsigned int	size() const;
 
 	private:

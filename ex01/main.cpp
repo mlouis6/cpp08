@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 14:09:17 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/22 14:55:21 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:35:57 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,26 @@ int	main()
 
 
 	Span spR = Span(4);
-	spR.addRange(0, sp.getData());
+	try
+	{
+		spR.addRange(0, sp.getDatas());
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Error: " << e.what() << std::endl;
+	}
+
 	for (unsigned int i = 0 ; i < spR.size() ; ++i)
 	{
-		std::cout << spR.getData()[i] << " ";
+		try
+		{
+			std::cout << spR.getData(i) << " ";
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Error: " << e.what();
+			break ;
+		}
 	}
 	std::cout << std::endl;
 	return (0);

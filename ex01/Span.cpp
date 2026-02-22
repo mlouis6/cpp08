@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/22 14:53:43 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/22 15:36:15 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,27 @@ void	Span::addRange(unsigned int pos, int* toAdd)
 {
 	if (pos >= _size)
 		return ;
-
-	for (unsigned int i = 0, _idx = pos ; _idx < _size ; ++_idx, ++i)
+	
+	int	size = sizeof(toAdd) / 2 + 1;
+	int* ite = &toAdd[size];
+	_idx = pos;
+	for (int* it = &toAdd[0] ; _idx < _size && ite != it; ++it)
 	{
-		this->addNumber(toAdd[i]);
+		this->addNumber(*it);
 	}
 }
 
-int*	Span::getData() const
+
+int*	Span::getDatas() const
 {
 	return (_data);
+}
+
+int	Span::getData(unsigned int pos) const
+{
+	if (pos >= _idx)
+		throw std::runtime_error("out of bound");
+	return (_data[pos]);
 }
 
 unsigned int	Span::size() const
