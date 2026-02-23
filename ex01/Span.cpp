@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/22 15:36:15 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/23 18:47:20 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include <algorithm>
 #include <limits>
 
-Span::Span() : _size(0), _data(0), _idx(0)
+Span::Span() : m_size(0), m_data(0), _idx(0)
 {
 
 }
 
-Span::Span(unsigned int size) : _size(size), _data(new int[size]), _idx(0)
+Span::Span(unsigned int size) : m_size(size), m_data(new int[size]), _idx(0)
 {
 
 }
 
-Span::Span(const Span& other) : _size(other._size)
+Span::Span(const Span& other) : m_size(other.m_size)
 {
 	//TODO: cpy
 }
@@ -34,7 +34,7 @@ Span&	Span::operator=(const Span& other)
 {
 	if (this != &other)
 	{
-		_size = other._size;
+		m_size = other.m_size;
 		//TODO: cpy
 
 	}
@@ -43,14 +43,14 @@ Span&	Span::operator=(const Span& other)
 
 Span::~Span()
 {
-	delete[] _data;
+	delete[] m_data;
 }
 
 void	Span::addNumber(int nb)
 {
-	if (_idx < _size)
+	if (_idx < m_size)
 	{
-		_data[_idx] = nb;
+		m_data[_idx] = nb;
 		++_idx;
 		return ;
 	}
@@ -65,10 +65,10 @@ int		Span::shortestSpan() const
 	{
 		for(unsigned int j = i + 1 ; j != _idx ; ++j)
 		{
-			if (_data[i] - _data[j] >= 0 && _data[i] - _data[j] < span)
-				span = _data[i] - _data[j];
-			if (_data[j] - _data[i] >= 0 && _data[j] - _data[i] < span)
-				span = _data[j] - _data[i];
+			if (m_data[i] - m_data[j] >= 0 && m_data[i] - m_data[j] < span)
+				span = m_data[i] - m_data[j];
+			if (m_data[j] - m_data[i] >= 0 && m_data[j] - m_data[i] < span)
+				span = m_data[j] - m_data[i];
 		}
 	}
 	return (span);
@@ -82,10 +82,10 @@ int		Span::longestSpan() const
 	{
 		for(unsigned int j = i + 1 ; j != _idx ; ++j)
 		{
-			if (_data[i] - _data[j] > span)
-				span = _data[i] - _data[j];
-			if (_data[j] - _data[i] > span)
-				span = _data[j] - _data[i];
+			if (m_data[i] - m_data[j] > span)
+				span = m_data[i] - m_data[j];
+			if (m_data[j] - m_data[i] > span)
+				span = m_data[j] - m_data[i];
 		}
 	}
 	return (span);
@@ -93,13 +93,13 @@ int		Span::longestSpan() const
 
 void	Span::addRange(unsigned int pos, int* toAdd)
 {
-	if (pos >= _size)
+	if (pos >= m_size)
 		return ;
 	
 	int	size = sizeof(toAdd) / 2 + 1;
 	int* ite = &toAdd[size];
 	_idx = pos;
-	for (int* it = &toAdd[0] ; _idx < _size && ite != it; ++it)
+	for (int* it = &toAdd[0] ; _idx < m_size && ite != it; ++it)
 	{
 		this->addNumber(*it);
 	}
@@ -108,17 +108,17 @@ void	Span::addRange(unsigned int pos, int* toAdd)
 
 int*	Span::getDatas() const
 {
-	return (_data);
+	return (m_data);
 }
 
 int	Span::getData(unsigned int pos) const
 {
 	if (pos >= _idx)
 		throw std::runtime_error("out of bound");
-	return (_data[pos]);
+	return (m_data[pos]);
 }
 
 unsigned int	Span::size() const
 {
-	return (_size);
+	return (m_size);
 }
