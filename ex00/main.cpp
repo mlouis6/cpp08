@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:29:46 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/22 13:53:04 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/24 08:11:29 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main()
 	lst.push_back(2);
 	try
 	{
-		std::list<int>::const_iterator	found1 = easyfind(lst, 8);
+		std::list<int>::iterator	found1 = easyfind(lst, 8);
 		std::cout << "f1 = " << *found1 << std::endl;
 	}
 	catch (const std::exception& e)

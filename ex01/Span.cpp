@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/23 18:47:20 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/24 07:57:36 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include <algorithm>
 #include <limits>
 
-Span::Span() : m_size(0), m_data(0), _idx(0)
+Span::Span() : m_size(0), m_data(0), m_idx(0)
 {
 
 }
 
-Span::Span(unsigned int size) : m_size(size), m_data(new int[size]), _idx(0)
+Span::Span(unsigned int size) : m_size(size), m_data(new int[size]), m_idx(0)
 {
 
 }
@@ -48,10 +48,10 @@ Span::~Span()
 
 void	Span::addNumber(int nb)
 {
-	if (_idx < m_size)
+	if (m_idx < m_size)
 	{
-		m_data[_idx] = nb;
-		++_idx;
+		m_data[m_idx] = nb;
+		++m_idx;
 		return ;
 	}
 	throw std::runtime_error("no more space in span");
@@ -61,9 +61,9 @@ int		Span::shortestSpan() const
 {
 	int	span = std::numeric_limits<int>::max();
 	
-	for(unsigned int i = 0 ; i != _idx - 1 ; ++i)
+	for(unsigned int i = 0 ; i != m_idx - 1 ; ++i)
 	{
-		for(unsigned int j = i + 1 ; j != _idx ; ++j)
+		for(unsigned int j = i + 1 ; j != m_idx ; ++j)
 		{
 			if (m_data[i] - m_data[j] >= 0 && m_data[i] - m_data[j] < span)
 				span = m_data[i] - m_data[j];
@@ -78,9 +78,9 @@ int		Span::longestSpan() const
 {
 	int	span = 0;
 	
-	for(unsigned int i = 0 ; i != _idx - 1 ; ++i)
+	for(unsigned int i = 0 ; i != m_idx - 1 ; ++i)
 	{
-		for(unsigned int j = i + 1 ; j != _idx ; ++j)
+		for(unsigned int j = i + 1 ; j != m_idx ; ++j)
 		{
 			if (m_data[i] - m_data[j] > span)
 				span = m_data[i] - m_data[j];
@@ -98,8 +98,8 @@ void	Span::addRange(unsigned int pos, int* toAdd)
 	
 	int	size = sizeof(toAdd) / 2 + 1;
 	int* ite = &toAdd[size];
-	_idx = pos;
-	for (int* it = &toAdd[0] ; _idx < m_size && ite != it; ++it)
+	m_idx = pos;
+	for (int* it = &toAdd[0] ; m_idx < m_size && ite != it; ++it)
 	{
 		this->addNumber(*it);
 	}
@@ -113,7 +113,7 @@ int*	Span::getDatas() const
 
 int	Span::getData(unsigned int pos) const
 {
-	if (pos >= _idx)
+	if (pos >= m_idx)
 		throw std::runtime_error("out of bound");
 	return (m_data[pos]);
 }

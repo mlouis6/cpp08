@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 11:30:11 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/23 13:16:13 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/24 08:16:54 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define EASYFIND_HPP
 
 template <typename T>
-const typename T::const_iterator&	easyfind(const T& t, int val);
+typename T::const_iterator	easyfind(const T& t, int val);
 
 template <typename T>
-typename T::const_iterator&	easyfind(T& t, int val);
+typename T::iterator	easyfind(T& t, int val);
 
 # include <easyfind.tpp>
 

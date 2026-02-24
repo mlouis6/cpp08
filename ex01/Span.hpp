@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:55:43 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/23 18:47:20 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/24 07:57:36 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Span
 		Span();
 		unsigned int		m_size;
 		int*				m_data;
-		unsigned int		_idx;
+		unsigned int		m_idx;
 
 };
 
