@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/27 18:56:14 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/27 19:01:10 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	Span::addNumber(int nb)
 
 int		Span::shortestSpan() const
 {
+	if (m_size < 2)
+		throw std::runtime_error("no enough values to get a span");
+	
 	int	span = std::numeric_limits<int>::max();
 	
 	for (std::vector<int>::const_iterator it = m_data.begin(); it != m_data.end() - 1 ; ++it)
@@ -89,9 +92,11 @@ int		Span::shortestSpan() const
 
 int		Span::longestSpan() const
 {
+	if (m_size < 2)
+		throw std::runtime_error("no enough values to get a span");
+
 	int	span = 0;
 	
-
 	for (std::vector<int>::const_iterator it = m_data.begin(); it != m_data.end() - 1 ; ++it)
 	{
 		for (std::vector<int>::const_iterator cmp = m_data.begin() + 1; cmp != m_data.end() ; ++cmp)
