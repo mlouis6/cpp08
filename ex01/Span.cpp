@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/24 07:57:36 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/26 13:19:40 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Span::Span() : m_size(0), m_data(0), m_idx(0)
 
 }
 
-Span::Span(unsigned int size) : m_size(size), m_data(new int[size]), m_idx(0)
+Span::Span(unsigned int size) : m_size(size), m_data(new int[size]()), m_idx(0)
 {
 
 }
