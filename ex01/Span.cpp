@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/26 13:19:40 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/27 18:56:14 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,50 @@ Span::Span() : m_size(0), m_data(0), m_idx(0)
 
 }
 
-Span::Span(unsigned int size) : m_size(size), m_data(new int[size]()), m_idx(0)
+Span::Span(unsigned int size) : m_size(size), m_idx(m_data.begin())
 {
 
 }
 
-Span::Span(const Span& other) : m_size(other.m_size)
+Span::Span(const Span& other) : m_size(other.m_size), m_data(m_size), m_idx(other.m_idx)
 {
-	//TODO: cpy
+	// for (unsigned i = 0 ; i < m_size ; ++i)
+	// {
+	// 	this->addNumber(other.m_data[i]);
+	// }
 }
 
 Span&	Span::operator=(const Span& other)
 {
 	if (this != &other)
 	{
+		// m_size = 0;
+		// delete m_data;
+		// m_data = std::list<int>[other.m_size]();
+		// for (unsigned i = 0 ; i < m_size ; ++i)
+		// {
+		// 	this->addNumber(other.m_data[i]);
+		// }
+		for (std::vector<int>::const_iterator it = m_data.begin(); it != m_data.end() ; ++it)
+		{
+			this->addNumber(*it);
+		}
 		m_size = other.m_size;
-		//TODO: cpy
-
+		m_idx = other.m_idx;
 	}
 	return (*this);
 }
 
 Span::~Span()
 {
-	delete[] m_data;
+	// delete[] m_data;
 }
 
 void	Span::addNumber(int nb)
 {
-	if (m_idx < m_size)
+	if (m_idx != m_data.end())
 	{
-		m_data[m_idx] = nb;
+		*m_idx = nb;
 		++m_idx;
 		return ;
 	}
@@ -61,14 +74,14 @@ int		Span::shortestSpan() const
 {
 	int	span = std::numeric_limits<int>::max();
 	
-	for(unsigned int i = 0 ; i != m_idx - 1 ; ++i)
+	for (std::vector<int>::const_iterator it = m_data.begin(); it != m_data.end() - 1 ; ++it)
 	{
-		for(unsigned int j = i + 1 ; j != m_idx ; ++j)
+		for (std::vector<int>::const_iterator cmp = m_data.begin() + 1; cmp != m_data.end() ; ++cmp)
 		{
-			if (m_data[i] - m_data[j] >= 0 && m_data[i] - m_data[j] < span)
-				span = m_data[i] - m_data[j];
-			if (m_data[j] - m_data[i] >= 0 && m_data[j] - m_data[i] < span)
-				span = m_data[j] - m_data[i];
+			if (*it - *cmp >= 0 && *it - *cmp < span)
+				span = *it - *cmp;
+			if (*cmp - *it >= 0 && *cmp - *it < span)
+				span = *cmp - *it;
 		}
 	}
 	return (span);
@@ -78,44 +91,67 @@ int		Span::longestSpan() const
 {
 	int	span = 0;
 	
-	for(unsigned int i = 0 ; i != m_idx - 1 ; ++i)
+
+	for (std::vector<int>::const_iterator it = m_data.begin(); it != m_data.end() - 1 ; ++it)
 	{
-		for(unsigned int j = i + 1 ; j != m_idx ; ++j)
+		for (std::vector<int>::const_iterator cmp = m_data.begin() + 1; cmp != m_data.end() ; ++cmp)
 		{
-			if (m_data[i] - m_data[j] > span)
-				span = m_data[i] - m_data[j];
-			if (m_data[j] - m_data[i] > span)
-				span = m_data[j] - m_data[i];
+			if (*it - *cmp >= 0 && *it - *cmp > span)
+				span = *it - *cmp;
+			if (*cmp - *it >= 0 && *cmp - *it > span)
+				span = *cmp - *it;
 		}
 	}
 	return (span);
 }
-
-void	Span::addRange(unsigned int pos, int* toAdd)
+#include <algorithm>
+void	Span::addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end)
 {
-	if (pos >= m_size)
-		return ;
-	
-	int	size = sizeof(toAdd) / 2 + 1;
-	int* ite = &toAdd[size];
-	m_idx = pos;
-	for (int* it = &toAdd[0] ; m_idx < m_size && ite != it; ++it)
+	// if (pos >= m_size)
+	// 	return ;
+	// std::ranges::range r;
+	for (std::vector<int>::const_iterator it = begin ; it != end; ++it)
 	{
 		this->addNumber(*it);
 	}
 }
 
+// void	Span::addRange(unsigned int pos, int* toAdd)
+// {
+// 	if (pos >= m_size)
+// 		return ;
+	
+// 	int	size = sizeof(toAdd) / 2 + 1;
+// 	int* ite = &toAdd[size];
+// 	m_idx = pos;
+// 	for (int* it = &toAdd[0] ; m_idx < m_size && ite != it; ++it)
+// 	{
+// 		this->addNumber(*it);
+// 	}
+// }
 
-int*	Span::getDatas() const
+std::vector<int>	Span::getDatas() const
 {
 	return (m_data);
 }
 
-int	Span::getData(unsigned int pos) const
+// // TODO: overload [] operator
+// int	Span::getData(unsigned int pos) const
+// {
+// 	if (pos >= m_idx)
+// 		throw std::runtime_error("out of bound");
+// 	return (m_data[pos]);
+// }
+
+
+std::vector<int>::const_iterator	Span::begin() const
 {
-	if (pos >= m_idx)
-		throw std::runtime_error("out of bound");
-	return (m_data[pos]);
+	return (m_data.begin());
+}
+
+std::vector<int>::const_iterator	Span::end() const
+{
+	return (m_data.end());
 }
 
 unsigned int	Span::size() const

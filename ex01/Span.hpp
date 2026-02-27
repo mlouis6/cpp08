@@ -6,13 +6,14 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:55:43 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/24 07:57:36 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/02/27 18:49:33 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
+# include <vector>
 class Span
 {
 	public:
@@ -21,19 +22,21 @@ class Span
 		Span&	operator=(const Span& other);
 		~Span();
 
-		void			addNumber(int nb);
-		int				shortestSpan() const;
-		int				longestSpan() const;
-		void			addRange(unsigned int pos, int* toAdd);
-		int*			getDatas() const;
-		int				getData(unsigned int pos) const;
-		unsigned int	size() const;
+		void								addNumber(int nb);
+		int									shortestSpan() const;
+		int									longestSpan() const;
+		void								addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+		std::vector<int>					getDatas() const;
+		// int									getData(unsigned int pos) const;
+		unsigned int						size() const;
+		std::vector<int>::const_iterator	begin() const;
+		std::vector<int>::const_iterator	end() const;
 
 	private:
 		Span();
-		unsigned int		m_size;
-		int*				m_data;
-		unsigned int		m_idx;
+		unsigned int					m_size;
+		std::vector<int>					m_data;
+		std::vector<int>::iterator		m_idx;
 
 };
 
