@@ -19,6 +19,6 @@ typename T::const_iterator	easyfind(const T& t, int val);
 template <typename T>
 typename T::iterator	easyfind(T& t, int val);
 
-# include <easyfind.tpp>
+# include "easyfind.tpp"
 
 #endif

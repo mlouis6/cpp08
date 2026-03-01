@@ -26,17 +26,18 @@ class Span
 		int									shortestSpan() const;
 		int									longestSpan() const;
 		void								addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
-		std::vector<int>					getDatas() const;
+		// std::vector<int>					getDatas() const;
 		// int									getData(unsigned int pos) const;
+		int									operator[](unsigned int pos);
 		unsigned int						size() const;
+		unsigned int						getCapacity() const;
 		std::vector<int>::const_iterator	begin() const;
 		std::vector<int>::const_iterator	end() const;
 
 	private:
 		Span();
-		unsigned int					m_size;
-		std::vector<int>					m_data;
-		std::vector<int>::iterator		m_idx;
+		unsigned int		m_capacity;
+		std::vector<int>	m_data;
 
 };
 
