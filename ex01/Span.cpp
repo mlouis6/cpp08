@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:56:24 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/27 19:01:10 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/02 11:19:22 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include <stdexcept>
 #include <algorithm>
 #include <limits>
-
-// Span::Span() : m_capacity(0), m_data(0)
-// {
-
-// }
 
 Span::Span(unsigned int size) : m_capacity(size)
 {
@@ -58,41 +53,45 @@ void	Span::addNumber(int nb)
 	throw std::runtime_error("no more space in span");
 }
 
-int		Span::shortestSpan() const
+long		Span::shortestSpan() const
 {
 	if (m_data.size() < 2)
 		throw std::runtime_error("no enough values to get a span");
 	
-	int	span = std::numeric_limits<int>::max();
+	long	span = std::numeric_limits<long>::max();
 
 	for (unsigned i = 0; i < m_data.size() - 1 ; ++i)
 	{
 		for (unsigned j = i + 1; j < m_data.size() ; ++j)
 		{
-			if (m_data[i] - m_data[j] >= 0 && m_data[i] - m_data[j] < span)
-				span = m_data[i] - m_data[j];
-			if (m_data[j] - m_data[i] >= 0 && m_data[j] - m_data[i] < span)
-				span = m_data[j] - m_data[i];
+			long	ij = static_cast<long>(m_data[i]) - static_cast<long>(m_data[j]);
+			if (ij >= 0 && ij < span)
+				span = ij;
+			long	ji = static_cast<long>(m_data[j]) - static_cast<long>(m_data[i]);
+			if (ji >= 0 && ji < span)
+				span = ji;
 		}
 	}
 	return (span);
 }
 
-int		Span::longestSpan() const
+long		Span::longestSpan() const
 {
 	if (m_data.size() < 2)
 		throw std::runtime_error("no enough values to get a span");
 
-	int	span = 0;
+	long	span = 0;
 	
 	for (unsigned i = 0; i < m_data.size() - 1 ; ++i)
 	{
 		for (unsigned j = i + 1; j < m_data.size() ; ++j)
 		{
-			if (m_data[i] - m_data[j] >= 0 && m_data[i] - m_data[j] > span)
-				span = m_data[i] - m_data[j];
-			if (m_data[j] - m_data[i] >= 0 && m_data[j] - m_data[i] > span)
-				span = m_data[j] - m_data[i];
+			long	ij = static_cast<long>(m_data[i]) - static_cast<long>(m_data[j]);
+			if (ij >= 0 && ij > span)
+				span = ij;
+			long	ji = static_cast<long>(m_data[j]) - static_cast<long>(m_data[i]);
+			if (ji >= 0 && ji > span)
+				span = ji;
 		}
 	}
 	return (span);
@@ -106,40 +105,12 @@ void	Span::addRange(std::vector<int>::const_iterator begin, std::vector<int>::co
 	}
 }
 
-// void	Span::addRange(unsigned int pos, int* toAdd)
-// {
-// 	if (pos >= m_capacity)
-// 		return ;
-	
-// 	int	size = sizeof(toAdd) / 2 + 1;
-// 	int* ite = &toAdd[size];
-// 	m_idx = pos;
-// 	for (int* it = &toAdd[0] ; m_idx < m_capacity && ite != it; ++it)
-// 	{
-// 		this->addNumber(*it);
-// 	}
-// }
-
 int	Span::operator[](unsigned int pos)
 {
 	if (pos >= m_data.size())
 		throw std::runtime_error("out of bound");
 	return (m_data[pos]);	
 }
-
-// std::vector<int>	Span::getDatas() const
-// {
-// 	return (m_data);
-// }
-
-// // TODO: overload [] operator
-// int	Span::getData(unsigned int pos) const
-// {
-// 	if (pos >= m_idx)
-// 		throw std::runtime_error("out of bound");
-// 	return (m_data[pos]);
-// }
-
 
 std::vector<int>::const_iterator	Span::begin() const
 {

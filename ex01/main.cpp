@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 14:09:17 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/27 18:54:33 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/02 11:17:17 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main()
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
+	
 
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
@@ -30,6 +31,8 @@ int	main()
 	Span spR = Span(4);
 	try
 	{
+		spR.addNumber(-2147483648);
+		spR.addNumber(2147483647);
 		spR.addRange(sp.begin(), sp.end());
 	}
 	catch (const std::exception& e)
@@ -50,5 +53,7 @@ int	main()
 		}
 	}
 	std::cout << std::endl;
+	std::cout << spR.shortestSpan() << std::endl;
+	std::cout << spR.longestSpan() << std::endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 13:55:43 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/27 18:49:33 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/02 11:15:06 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ class Span
 		~Span();
 
 		void								addNumber(int nb);
-		int									shortestSpan() const;
-		int									longestSpan() const;
+		long								shortestSpan() const;
+		long								longestSpan() const;
 		void								addRange(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
-		// std::vector<int>					getDatas() const;
-		// int									getData(unsigned int pos) const;
 		int									operator[](unsigned int pos);
 		unsigned int						size() const;
 		unsigned int						getCapacity() const;
