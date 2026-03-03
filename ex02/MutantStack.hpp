@@ -6,12 +6,14 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:14 by mlouis            #+#    #+#             */
-/*   Updated: 2026/02/22 15:46:46 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/03 16:25:54 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MUTANT_STACK_HPP
 # define MUTANT_STACK_HPP
+
+# include <stack>
 
 template <typename T>
 class MutantStack
@@ -25,12 +27,17 @@ class MutantStack
 
 		void						push(const T& t);
 		void						pop();
-		T&							top();
-		unsigned int				size();
-		MutantStack<T>::iterator	begin();
-		MutantStack<T>::iterator	end();
+		const T&					top() const;
+		unsigned int				size() const;
+		// typename MutantStack<T>::iterator		begin() const;
+		// // typename T::const_iterator	begin() const;
+		// typename MutantStack<T>::iterator		end() const;
+		// // typename T::const_iterator	end() const;
+		T*		begin() const;
+		T*		end() const;
+		T*		iterator;
 	private:
-
+		std::stack<T>	m_stack;
 };
 
 #include "MutantStack.tpp"
