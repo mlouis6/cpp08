@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:38:39 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/04 11:04:39 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/04 15:35:35 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main()
 		std::cout << *it << std::endl;
 		++it;
 	}
-	// std::stack<int> s(mstack);
+	std::stack<int> s(mstack);
 	
 	return (0);
 }

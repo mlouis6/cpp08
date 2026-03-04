@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:14 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/04 10:45:23 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/04 15:35:17 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MUTANT_STACK_HPP
 
 # include <stack>
-
 // template <typename T>
 // typedef struct t_iterator
 // {
@@ -22,7 +21,7 @@
 // }	s_iterator;
 
 template <typename T>
-class MutantStack //: public std::stack;
+class MutantStack : public std::stack<T>
 {
 	public:
 		MutantStack();
