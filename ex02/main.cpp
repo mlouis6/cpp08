@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:38:39 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/04 15:35:35 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/09 11:08:41 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int main()
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
-	// for (unsigned i = 0 ;  i < 380 ; ++i)
-	// 	mstack.push(4);
+	for (unsigned i = 0 ;  i < 380 ; ++i)
+		mstack.push(4);
 	mstack.push(0);
 
 	MutantStack<int>::iterator it = mstack.begin();

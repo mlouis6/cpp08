@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:22 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/04 15:39:03 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/10 12:28:22 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,32 @@ unsigned int	MutantStack<T>::size() const
 template <typename T>
 T*	MutantStack<T>::begin() 
 {
-	return (&m_stack.top() -  m_stack.size() + 1);
+	return m_stack.begin();
+	// return (&m_stack.top() -  m_stack.size() + 1);
 }
 
 template <typename T>
 T*	MutantStack<T>::end()
 {
+	// return &m_stack + m_stack.size();
 	return (&m_stack.top() + 1);
 }
 
+// template <typename T>
+// typename std::deque<T>::iterator	MutantStack<T>::begin() 
+// {
+// 	// iterator = &m_stack.begin();
+// 	return &m_stack.begin();
+// }
+
+// template <typename T>
+// typename std::deque<T>::iterator	MutantStack<T>::end()
+// {
+// 	// iterator = &m_stack.end();
+// 	return (&m_stack.end());
+// }
+
 //TODO: check empty()
+
+//TODO: create vector where address is add after each push (using top())
+//TODO: will need to update accordingly in pop
