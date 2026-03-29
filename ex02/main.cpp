@@ -6,13 +6,15 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:38:39 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/09 11:08:41 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/29 11:11:51 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <iostream>
 #include <iterator>
+#include <deque>
+#include <list>
 
 int main()
 {

@@ -6,77 +6,113 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:22 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/26 17:02:53 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/29 11:10:45 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-template <typename T, typename Container>
-MutantStack<T, Container>::MutantStack()
+template <typename T>
+MutantStack<T>::MutantStack()
 {
 
 }
 
-template <typename T, typename Container>
-MutantStack<T, Container>::MutantStack(int)
+template <typename T>
+MutantStack<T>::MutantStack(int)
 {
 
 }
 
-template <typename T, typename Container>
-MutantStack<T, Container>::MutantStack(const MutantStack& other)
-{
-	(void)(other);
-}
-
-template <typename T, typename Container>
-MutantStack<T, Container>&	MutantStack<T, Container>::operator=(const MutantStack& other)
+template <typename T>
+MutantStack<T>::MutantStack(const MutantStack& other)
 {
 	(void)(other);
 }
 
-template <typename T, typename Container>
-MutantStack<T, Container>::~MutantStack()
+template <typename T>
+MutantStack<T>&	MutantStack<T>::operator=(const MutantStack& other)
+{
+	(void)(other);
+}
+
+template <typename T>
+MutantStack<T>::~MutantStack()
 {
 
 }
 
 
-template <typename T, typename Container>
-void	MutantStack<T, Container>::push(const T& t)
+// template <typename T>
+// void	MutantStack<T>::push(const T& t)
+// {
+// 	push(t);
+// }
+
+// template <typename T>
+// void	MutantStack<T>::pop()
+// {
+// 	pop();
+// }
+
+// template <typename T>
+// const T&	MutantStack<T>::top() const
+// {
+// 	return top();
+// }
+
+// template <typename T>
+// unsigned int	MutantStack<T>::size() const
+// {
+// 	return size();
+// }
+
+
+template <typename T>
+typename MutantStack<T>::iterator	MutantStack<T>::begin()
 {
-	m_stack.push(t);
+	return this->c.begin();
 }
 
-template <typename T, typename Container>
-void	MutantStack<T, Container>::pop()
+template <typename T>
+typename MutantStack<T>::iterator	MutantStack<T>::end()
 {
-	m_stack.pop();
+	return this->c.end();
 }
 
-template <typename T, typename Container>
-const T&	MutantStack<T, Container>::top() const
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::cbegin() const
 {
-	return m_stack.top();
+	return this->c.cbegin();
 }
 
-template <typename T, typename Container>
-unsigned int	MutantStack<T, Container>::size() const
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::cend() const
 {
-	return m_stack.size();
+	return this->c.cend();
 }
 
-template <typename T, typename Container>
-T*	MutantStack<T, Container>::begin() 
+/** reverse iterators */
+template <typename T>
+typename MutantStack<T>::iterator	MutantStack<T>::rbegin()
 {
-	return m_stack.begin();
+	return this->c.rbegin();
 }
 
-template <typename T, typename Container>
-T*	MutantStack<T, Container>::end()
+template <typename T>
+typename MutantStack<T>::iterator	MutantStack<T>::rend()
 {
-	// return &m_stack + m_stack.size();
-	return (&m_stack.top() + 1);
+	return this->c.rend();
 }
 
-//TODO: check empty()
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::crbegin() const
+{
+	return this->c.crbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_iterator	MutantStack<T>::crend() const
+{
+	return this->c.crend();
+}
+
+//TODO: check constructor and cpy ctor

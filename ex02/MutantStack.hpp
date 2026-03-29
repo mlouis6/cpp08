@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:14 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/26 17:02:37 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/29 11:14:32 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,33 @@
 # include <deque>
 # include <iterator>
 
-template <typename T, typename Container = std::deque<T> >
-class MutantStack : public std::stack<T, Container>
+template <typename T>
+class MutantStack : public std::stack<T, std::deque<T> >
 {
 	public:
+		
 		MutantStack();
 		MutantStack(int);
 		MutantStack(const MutantStack& other);
 		MutantStack&	operator=(const MutantStack& other);
 		~MutantStack();
 
-		void						push(const T& t);
-		void						pop();
-		const T&					top() const;
-		unsigned int				size() const;
+		// void			push(const T& t);
+		// void			pop();
+		// const T&		top() const;
+		// unsigned int	size() const;
+		typedef typename std::deque<T>::iterator iterator;
+		typedef typename std::deque<T>::const_iterator const_iterator;
 		
-		T*		begin();
-		T*		end();
-		
-	private:
-		std::stack<T, Container>	m_stack;
+		iterator		begin();
+		iterator		end();
+		const_iterator	cbegin() const;
+		const_iterator	cend() const;
+
+		iterator		rbegin();
+		iterator		rend();
+		const_iterator	crbegin() const;
+		const_iterator	crend() const;
 };
 
 #include "MutantStack.tpp"
