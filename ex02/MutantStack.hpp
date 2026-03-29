@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:14 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/29 11:26:13 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/29 12:00:41 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,18 @@ class MutantStack : public std::stack<T, std::deque<T> >
 
 		typedef typename std::deque<T>::iterator iterator;
 		typedef typename std::deque<T>::const_iterator const_iterator;
+		typedef typename std::deque<T>::reverse_iterator reverse_iterator;
+		typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
 		
 		iterator		begin();
 		iterator		end();
-		const_iterator	cbegin() const;
-		const_iterator	cend() const;
+		const_iterator	begin() const;
+		const_iterator	end() const;
 
-		iterator		rbegin();
-		iterator		rend();
-		const_iterator	crbegin() const;
-		const_iterator	crend() const;
+		reverse_iterator		rbegin();
+		reverse_iterator		rend();
+		const_reverse_iterator	rbegin() const;
+		const_reverse_iterator	rend() const;
 };
 
 #include "MutantStack.tpp"

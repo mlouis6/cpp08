@@ -6,7 +6,7 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:22 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/29 11:26:24 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/29 12:00:55 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,38 +52,38 @@ typename MutantStack<T>::iterator	MutantStack<T>::end()
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator	MutantStack<T>::cbegin() const
+typename MutantStack<T>::const_iterator	MutantStack<T>::begin() const
 {
 	return this->c.cbegin();
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator	MutantStack<T>::cend() const
+typename MutantStack<T>::const_iterator	MutantStack<T>::end() const
 {
 	return this->c.cend();
 }
 
 /** reverse iterators */
 template <typename T>
-typename MutantStack<T>::iterator	MutantStack<T>::rbegin()
+typename MutantStack<T>::reverse_iterator	MutantStack<T>::rbegin()
 {
 	return this->c.rbegin();
 }
 
 template <typename T>
-typename MutantStack<T>::iterator	MutantStack<T>::rend()
+typename MutantStack<T>::reverse_iterator	MutantStack<T>::rend()
 {
 	return this->c.rend();
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator	MutantStack<T>::crbegin() const
+typename MutantStack<T>::const_reverse_iterator	MutantStack<T>::rbegin() const
 {
 	return this->c.crbegin();
 }
 
 template <typename T>
-typename MutantStack<T>::const_iterator	MutantStack<T>::crend() const
+typename MutantStack<T>::const_reverse_iterator	MutantStack<T>::rend() const
 {
 	return this->c.crend();
 }
