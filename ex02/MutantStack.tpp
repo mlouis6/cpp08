@@ -6,32 +6,30 @@
 /*   By: mlouis <mlouis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 15:39:22 by mlouis            #+#    #+#             */
-/*   Updated: 2026/03/29 11:10:45 by mlouis           ###   ########.fr       */
+/*   Updated: 2026/03/29 11:26:24 by mlouis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 template <typename T>
-MutantStack<T>::MutantStack()
+MutantStack<T>::MutantStack() : std::stack<T>()
 {
 
 }
 
 template <typename T>
-MutantStack<T>::MutantStack(int)
+MutantStack<T>::MutantStack(const MutantStack& other) : std::stack<T>(other)
 {
 
-}
-
-template <typename T>
-MutantStack<T>::MutantStack(const MutantStack& other)
-{
-	(void)(other);
 }
 
 template <typename T>
 MutantStack<T>&	MutantStack<T>::operator=(const MutantStack& other)
 {
-	(void)(other);
+	if (this != &other)
+	{
+		std::stack<T>::operator=(other);
+	}
+	return *this;
 }
 
 template <typename T>
@@ -40,32 +38,7 @@ MutantStack<T>::~MutantStack()
 
 }
 
-
-// template <typename T>
-// void	MutantStack<T>::push(const T& t)
-// {
-// 	push(t);
-// }
-
-// template <typename T>
-// void	MutantStack<T>::pop()
-// {
-// 	pop();
-// }
-
-// template <typename T>
-// const T&	MutantStack<T>::top() const
-// {
-// 	return top();
-// }
-
-// template <typename T>
-// unsigned int	MutantStack<T>::size() const
-// {
-// 	return size();
-// }
-
-
+/** iterators */
 template <typename T>
 typename MutantStack<T>::iterator	MutantStack<T>::begin()
 {
@@ -114,5 +87,3 @@ typename MutantStack<T>::const_iterator	MutantStack<T>::crend() const
 {
 	return this->c.crend();
 }
-
-//TODO: check constructor and cpy ctor
